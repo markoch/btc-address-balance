@@ -4,7 +4,9 @@ This project implements a web page to show the balance of a Bitcoin address.
 
 ![main](./doc/main.png)
 
-It is reading the balance data for a Bitcoin address via [Blockchain.info](https://blockchain.info) provider.
+The website is retrieving the balance data via [Blockchain.info](https://blockchain.info) services.
+
+The QR code is rendered with [Google APIs](https://developers.google.com/).
 
 ## Getting Started
 
@@ -20,6 +22,10 @@ changed soon.
 
 * [Atom](https://atom.io/) - Editor
 * [CodeKit](https://codekitapp.com/) - Web Project Tool
+
+## Used APIs
+* [Blockchain.info](https://blockchain.info) - Bitcoin information
+* [Google APIs](https://developers.google.com/) - Rendering QR code
 
 ## Contributing
 
