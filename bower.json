@@ -1,0 +1,38 @@
+{
+  "name": "btc-address-balance",
+  "authors": [
+    "Marco Koch <marco.koch.hh@gmail.com>"
+  ],
+  "description": "Implements a web page to show the balance of a Bitcoin address.",
+  "main": [
+    "index.html",
+    "main.js"
+  ],
+  "moduleType": [
+    "amd",
+    "es6",
+    "globals",
+    "node",
+    "yui"
+  ],
+  "keywords": [
+    "none"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/markoch/btc-address-balance",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/markoch/btc-address-balance"
+  },
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "private": true,
+  "dependencies": {
+    "bootstrap": "^3.3.7"
+  }
+}

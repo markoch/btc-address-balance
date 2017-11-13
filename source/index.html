@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Bitcoin Address Balance</title>
+  <meta name="description" content="Bitcoin Address Balance" />
+  <meta name="author" content="Marco Koch" />
+
+  <link rel="stylesheet" href="site-min.css">
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" type="text/css" />
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.css" type="text/css" />
+  <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css" type="text/css" />
+</head>
+
+<script type="text/javascript">
+console.log(format(5,100000));
+function format(number, conversion) {
+	number = (number / conversion).toString();
+
+	var pos = number.indexOf(".");
+	if(pos != -1) {
+		var prec = 8 - number.substring(pos + 1).length;
+    number = number + "0".repeat(prec);
+	}
+
+	return number;
+}
+
+function getData(bitcoinHash){
+  var xhr = new XMLHttpRequest();
+  xhr.onreadystatechange = function() {
+    if(xhr.readyState == 4 && xhr.status == 200) {
+      var data = JSON.parse(xhr.responseText);
+      console.log(data);
+
+      <!-- Main table-->
+      document.getElementById('text-walletID').textContent = "Wallet: " + data.addresses[0].address;
+      document.getElementById('text-totalReceived').textContent = format(data.addresses[0].total_received, data.info.symbol_btc.conversion) + " BTC";
+      document.getElementById('text-totalSent').textContent = format(data.addresses[0].total_sent, data.info.symbol_btc.conversion) + " BTC";
+      document.getElementById('text-totalTransact').textContent = data.addresses[0].n_tx;
+      document.getElementById('text-finalBalance').textContent = format(data.addresses[0].final_balance, data.info.symbol_btc.conversion)  + " BTC";
+      document.getElementById('responseStruct').classList.remove("hidden");
+      <!-- Image -->
+      document.getElementById('qrCode').src= "http://chart.googleapis.com/chart?chs=125x125&cht=qr&chl=" + bitcoinHash
+    }
+  }
+
+  xhr.open("GET", "https://blockchain.info/multiaddr?cors=true&active="+bitcoinHash, true);
+	xhr.send();
+}
+</script>
+
+<body class="site has-navbar-fixed-top">
+      <header role="banner" id="top" class="site-header">
+        <!-- Main navigation -->
+		    <nav class="navbar navbar-fixed-top navbar-inverse">
+		        <div class="container">
+
+		            <!-- Brand and menu toggle -->
+		            <div class="navbar-header">
+		                <a href="/" class="navbar-brand offset-right-large">
+		                    <span class="visible-xs visible-md visible-lg">Bitcoin Address Balance</span>
+		                    <span class="visible-sm" aria-hidden="true">BUI</span>
+		                </a>
+		            </div>
+		        </div>
+		    </nav>
+		</header>
+
+    <div class="container-fluid text-center ">
+        <div class="row justify-content-center page-content">
+      <img src="images/bitcoin.jpg" class="img-rounded" alt="Bitcoin Image" width="220" height="220">
+      <form  id="getDataForm" class="main-form" method="get" action="javascript:getData(hash.value)">
+        <div class="input-group col-md-8 col-md-offset-2">
+          <input type="text" class="form-control" id="hash" placeholder="Enter address / firstbits / IP / SHA-Hash to show its balance" name="hash" value="" autocomplete="off"
+            pattern="[13][a-km-zA-HJ-NP-Z1-9]{25,34}(\+[13][a-km-zA-HJ-NP-Z1-9]{25,34})*" required autofocus>
+            <span class="input-group-btn">
+            <button id="submit" type="submit" class="btn btn-primary"><span class="glyphicon fa fa-btc"></span></button>
+          </span>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <div id="responseStruct" class="hidden response-content">
+    <div class="container-fluid">
+        <div class="row wallet-content col-sm-9 col-md-offset-2">
+          <h4 id="text-walletID"></h4>
+        </div>
+    </div>
+
+  <!-- Response area -->
+    <div class="container-fluid">
+        <div class="row wallet-content col-sm-5 col-md-offset-2">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th></th>
+                <th>Bitcoin</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Total Amount Received</td>
+                <td id="text-totalReceived"></td>
+              </tr>
+              <tr>
+                <td>Total Amount Sent</td>
+                <td id="text-totalSent"></td>
+              </tr>
+              <tr>
+                <td>Total Transactions</td>
+                <td id="text-totalTransact"></td>
+              </tr>
+              <tr>
+                <td><b>Final Balance</b></td>
+                <td id="text-finalBalance"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="row wallet-content col-sm-2 col-md-offset-1">
+            <img id="qrCode" src="" height="220" width="220">
+        </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="navbar navbar-default navbar-fixed-bottom">
+      <div class="container footer-content">
+        <nav class="pull-left">
+          <a href="https://github.com/markoch">
+              <i class="fa fa-github" aria-hidden="true"></i> GitHub
+          </a>
+        </nav>
+        <nav class="pull-right">
+          <a href="https://blockchain.info">
+              <i aria-hidden="true"></i> Blockchain.info
+          </a>
+        </nav>
+      </div>
+  </div>
+
+</body>
+</html>
