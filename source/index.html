@@ -42,11 +42,11 @@ function getData(bitcoinHash){
       document.getElementById('text-finalBalance').textContent = format(data.addresses[0].final_balance, data.info.symbol_btc.conversion)  + " BTC";
       document.getElementById('responseStruct').classList.remove("hidden");
       <!-- Image -->
-      document.getElementById('qrCode').src= "http://chart.googleapis.com/chart?chs=125x125&cht=qr&chl=" + bitcoinHash
+      document.getElementById('qrCode').src= "http://chart.googleapis.com/chart?chs=125x125&cht=qr&chl=bitcoin:" + bitcoinHash
     }
   }
 
-  xhr.open("GET", "https://blockchain.info/multiaddr?cors=true&active="+bitcoinHash, true);
+  xhr.open("GET", "https://blockchain.info/multiaddr?cors=true&active=" + bitcoinHash, true);
 	xhr.send();
 }
 </script>

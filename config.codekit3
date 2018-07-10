@@ -16,48 +16,6 @@
 		"oAP": "\/dist\/.gitignore",
 		"oF": 0
 		},
-	"\/.project": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 2,
-		"oAP": "\/dist\/.project",
-		"oF": 0
-		},
-	"\/.settings\/.jsdtscope": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 2,
-		"oAP": "\/dist\/.settings\/.jsdtscope",
-		"oF": 0
-		},
-	"\/.settings\/org.eclipse.wst.common.component": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 2,
-		"oAP": "\/dist\/.settings\/org.eclipse.wst.common.component",
-		"oF": 0
-		},
-	"\/.settings\/org.eclipse.wst.common.project.facet.core.xml": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 2,
-		"oAP": "\/dist\/.settings\/org.eclipse.wst.common.project.facet.core.xml",
-		"oF": 0
-		},
-	"\/.settings\/org.eclipse.wst.jsdt.ui.superType.container": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 2,
-		"oAP": "\/dist\/.settings\/org.eclipse.wst.jsdt.ui.superType.container",
-		"oF": 0
-		},
-	"\/.settings\/org.eclipse.wst.jsdt.ui.superType.name": {
-		"cB": 0,
-		"ft": 8192,
-		"oA": 2,
-		"oAP": "\/dist\/.settings\/org.eclipse.wst.jsdt.ui.superType.name",
-		"oF": 0
-		},
 	"\/bower.json": {
 		"ft": 524288,
 		"oA": 1,
@@ -3624,7 +3582,7 @@
 	},
 "projectAttributes": {
 	"creationDate": 529958184,
-	"displayValue": "balance",
+	"displayValue": "btc-address-balance",
 	"displayValueWasSetByUser": 0,
 	"iconImageName": "meme-cryingJordan",
 	"lastBuiltDate": 529973320
