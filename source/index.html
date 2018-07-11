@@ -17,35 +17,32 @@
 <script type="text/javascript">
 function format(number, conversion) {
 	number = (number / conversion).toString();
-
 	var pos = number.indexOf(".");
 	if(pos != -1) {
 		var prec = 8 - number.substring(pos + 1).length;
     number = number + "0".repeat(prec);
 	}
-
 	return number;
 }
-
 function getData(bitcoinHash){
   var xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function() {
     if(xhr.readyState == 4 && xhr.status == 200) {
       var data = JSON.parse(xhr.responseText);
       console.log(data);
-
       // Main table
       document.getElementById('text-walletID').textContent = "Wallet: " + data.addresses[0].address;
       document.getElementById('text-totalReceived').textContent = format(data.addresses[0].total_received, data.info.symbol_btc.conversion) + " BTC";
       document.getElementById('text-totalSent').textContent = format(data.addresses[0].total_sent, data.info.symbol_btc.conversion) + " BTC";
       document.getElementById('text-totalTransact').textContent = data.addresses[0].n_tx;
       document.getElementById('text-finalBalance').textContent = format(data.addresses[0].final_balance, data.info.symbol_btc.conversion)  + " BTC";
+      document.getElementById('responseStruct').classList.remove("hidden");
+
       // https://developers.google.com/chart/infographics/docs/qr_codes
-      // the API os deprecated but there is no official replacement yet
+      // the API is deprecated but there is no official replacement yet
       document.getElementById('qrCode').src= "http://chart.googleapis.com/chart?cht=qr&chs=177x177&chld=H&chl=bitcoin:" + bitcoinHash
     }
   }
-
   xhr.open("GET", "https://blockchain.info/multiaddr?cors=true&active=" + bitcoinHash, true);
 	xhr.send();
 }
